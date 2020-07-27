@@ -3,7 +3,7 @@ import cli from 'cli-ux';
 import BaseCommand from '../base';
 
 export default class InitCommand extends BaseCommand {
-  static description = 'run config initialization process';
+  static description = 'initialize config and authorize with Spotify';
 
   static flags = {
     help: flags.help({ char: 'h' }),
@@ -14,5 +14,11 @@ export default class InitCommand extends BaseCommand {
     const clientSecret = await cli.prompt('Client Secret', { required: true });
 
     this.resolve('config').set({ clientId, clientSecret });
+
+    cli.action.start('Authorization started');
+
+    await this.resolve('auth').trigger();
+
+    cli.action.stop();
   }
 }

@@ -10,10 +10,10 @@ Create and update Spotify discography playlists.
 
 - [Spotify Discography CLI](#spotify-discography-cli)
 - [Installation](#installation)
-- [Quick Start](#quick-start)
-- [Usage Example](#usage-example)
+- [One-time setup](#one-time-setup)
+- [Usage](#usage)
 - [Commands](#commands)
-- [Data Storage](#data-storage)
+- [Data storage](#data-storage)
 - [Bug reporting](#bug-reporting)
 - [License](#license)
 <!-- tocstop -->
@@ -30,9 +30,7 @@ or
 yarn global add spotify-discography-cli
 ```
 
-# Quick Start
-
-**This is a one-time setup process.**
+# One-time setup
 
 In order to use this tool, you have to provide a Spotify app's client ID and secret. To create a new app, follow these steps:
 
@@ -43,25 +41,19 @@ In order to use this tool, you have to provide a Spotify app's client ID and sec
 5. Add `http://localhost:10101` to your **Redirect URIs** field and click "Save"
 6. You should see your app's client ID and secret in top left
 
-Once you have client ID and secret ready, initialize the setup process with
+Once you have client ID and secret ready, run
 
 ```
 spotify-discography init
 ```
 
-Once finished, continue with authorizing your Spotify account running
+You will be asked for client ID and secret followed by authorization with Spotify. Once authorized, you should see a success message.
 
-```
-spotify-discography auth
-```
+That's it! You can now start using the app.
 
-In a newly opened browser tab, authorize the app. Once authorized, you should see a success message.
+# Usage
 
-That's it! You can now start using the tool.
-
-# Usage Example
-
-## New discography
+## Create new discography
 
 To create a new discography playlist for specific artist, you have to get that artist's ID first. There are many ways to get an artist's ID. The easiest one is to go to an artist's page in the web player and check the url - the ID is highlighted in bold: &#8203;https//open.spotify.com/artist/**5oDtp2FC8VqBjTx1aT4P5j**
 
@@ -99,27 +91,12 @@ spotify-discography update 5oDtp2FC8VqBjTx1aT4P5j 6pyiISrb7yoHw7YDhV7xH8
 
 <!-- commands -->
 
-- [`spotify-discography auth`](#spotify-discography-auth)
 - [`spotify-discography config [CONFIG_KEY] [CONFIG_VALUE]`](#spotify-discography-config-config_key-config_value)
 - [`spotify-discography create ARTIST_ID`](#spotify-discography-create-artist_id)
 - [`spotify-discography help [COMMAND]`](#spotify-discography-help-command)
 - [`spotify-discography init`](#spotify-discography-init)
 - [`spotify-discography reset`](#spotify-discography-reset)
 - [`spotify-discography update ARTIST_ID PLAYLIST_ID`](#spotify-discography-update-artist_id-playlist_id)
-
-## `spotify-discography auth`
-
-authorize with Spotify
-
-```
-USAGE
-  $ spotify-discography auth
-
-OPTIONS
-  -h, --help  show CLI help
-```
-
-_See code: [src/commands/auth.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/auth.ts)_
 
 ## `spotify-discography config [CONFIG_KEY] [CONFIG_VALUE]`
 
@@ -192,7 +169,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v3.1.0
 
 ## `spotify-discography init`
 
-run config initialization process
+initialize config and authorize with Spotify
 
 ```
 USAGE
@@ -243,7 +220,7 @@ _See code: [src/commands/update.ts](https://github.com/jakubito/spotify-discogra
 
 <!-- commandsstop -->
 
-# Data Storage
+# Data storage
 
 All application data is stored locally on your computer:
 
