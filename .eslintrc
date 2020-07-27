@@ -1,0 +1,9 @@
+{
+  "extends": ["oclif", "oclif-typescript", "prettier"],
+  "rules": {
+    "no-useless-constructor": "off",
+    "no-await-in-loop": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": ["error"]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "spotify-discography-cli",
+  "description": "Create and update Spotify discography playlists.",
+  "version": "1.0.0",
+  "author": "Jakub Dobes <dobes.jakub@gmail.com>",
+  "bin": {
+    "spotify-discography": "./bin/run"
+  },
+  "bugs": "https://github.com/jakubito/spotify-discography-cli/issues",
+  "dependencies": {
+    "@oclif/command": "^1",
+    "@oclif/config": "^1",
+    "@oclif/plugin-help": "^3",
+    "awilix": "^4.2.6",
+    "fs-extra": "^9.0.1",
+    "lodash.orderby": "^4.6.0",
+    "lodash.zip": "^4.2.0",
+    "node-fetch": "^2.6.0",
+    "query-string": "^6.13.1",
+    "tslib": "^1"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1",
+    "@types/fs-extra": "^9.0.1",
+    "@types/lodash.orderby": "^4.6.6",
+    "@types/lodash.zip": "^4.2.6",
+    "@types/node": "^10",
+    "@types/node-fetch": "^2.5.7",
+    "eslint": "^5.13",
+    "eslint-config-oclif": "^3.1",
+    "eslint-config-oclif-typescript": "^0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "globby": "^10",
+    "ts-node": "^8",
+    "typescript": "^3.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json"
+  ],
+  "homepage": "https://github.com/jakubito/spotify-discography-cli",
+  "keywords": [
+    "oclif",
+    "spotify",
+    "discography",
+    "catalog",
+    "playlist"
+  ],
+  "license": "ISC",
+  "main": "lib/index.js",
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "spotify-discography",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "jakubito/spotify-discography-cli",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "types": "lib/index.d.ts"
+}
