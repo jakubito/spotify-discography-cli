@@ -24,7 +24,7 @@
     "@types/fs-extra": "^9.0.1",
     "@types/lodash.orderby": "^4.6.6",
     "@types/lodash.zip": "^4.2.6",
-    "@types/node": "^10",
+    "@types/node": "^12",
     "@types/node-fetch": "^2.5.7",
     "eslint": "^5.13",
     "eslint-config-oclif": "^3.1",
@@ -64,9 +64,8 @@
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
-    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
-    "test": "echo NO TESTS",
-    "version": "oclif-dev readme && git add README.md"
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest",
+    "test": "echo NO TESTS"
   },
   "types": "lib/index.d.ts"
 }
