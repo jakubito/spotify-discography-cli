@@ -13,6 +13,10 @@ SHY FX Discography`,
 
   static flags = {
     help: flags.help({ char: 'h' }),
+    force: flags.boolean({
+      char: 'f',
+      description: 'ignore history and force add all missing tracks',
+    }),
   };
 
   static args = [
@@ -21,11 +25,13 @@ SHY FX Discography`,
   ];
 
   async run() {
-    const [artistId, playlistId] = this.parse(UpdateCommand).argv;
+    const parsed = this.parse(UpdateCommand);
+    const [artistId, playlistId] = parsed.argv;
+    const { force } = parsed.flags;
 
     cli.action.start('Updating playlist');
 
-    const playlist = await this.resolve('discography').update(artistId, playlistId);
+    const playlist = await this.resolve('discography').update(artistId, playlistId, force);
 
     cli.action.stop();
     cli.url(playlist.name, playlist.external_urls.spotify);

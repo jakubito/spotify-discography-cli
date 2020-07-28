@@ -6,33 +6,55 @@ import {
   DiscographyInterface,
   ApiInterface,
   AuthInterface,
+  HistoryInterface,
   DiscographyResult,
   AlbumTracksTuple,
 } from '../types';
 
 export default class Discography implements DiscographyInterface {
-  constructor(public auth: AuthInterface, public api: ApiInterface) {}
+  constructor(
+    public auth: AuthInterface,
+    public api: ApiInterface,
+    public history: HistoryInterface
+  ) {}
 
   async create(artistId: string) {
+    await this.auth.ensureToken();
+
     const { artist, trackIds } = await this.getDiscography(artistId);
     const playlist = await this.api.createPlaylist(`${artist.name} Discography`);
 
     await this.api.addTracksToPlaylist(playlist.id, trackIds.map(trackUri));
 
+    this.history.save(artistId, playlist.id, trackIds);
+
     return playlist;
   }
 
-  async update(artistId: string, playlistId: string) {
+  async update(artistId: string, playlistId: string, force?: boolean) {
+    await this.auth.ensureToken();
+
     const playlist = await this.api.getPlaylist(playlistId);
     const { trackIds } = await this.getDiscography(artistId);
 
-    const playlistTrackIds = new Set(
+    const historyTracks = new Set(this.history.load(artistId, playlistId));
+    const playlistTracks = new Set(
       playlist.tracks.items.map((playlistTrack) => playlistTrack.track.id)
     );
 
-    const newTrackIds = trackIds.filter((trackId) => !playlistTrackIds.has(trackId));
+    const tracksToAdd = trackIds.filter(
+      (trackId) => !playlistTracks.has(trackId) && (force || !historyTracks.has(trackId))
+    );
 
-    await this.api.addTracksToPlaylist(playlist.id, newTrackIds.map(trackUri));
+    if (tracksToAdd.length > 0) {
+      await this.api.addTracksToPlaylist(playlist.id, tracksToAdd.map(trackUri));
+
+      for (const trackId of tracksToAdd) {
+        historyTracks.add(trackId);
+      }
+
+      this.history.save(artistId, playlistId, [...historyTracks]);
+    }
 
     return playlist;
   }
@@ -40,8 +62,6 @@ export default class Discography implements DiscographyInterface {
   private async getDiscography(artistId: string): Promise<DiscographyResult> {
     const trackNames = new Map<string, string>();
     const trackIds = [];
-
-    await this.auth.ensureToken();
 
     const artist = await this.api.getArtist(artistId);
     const albums = await this.api.getArtistAlbums(artistId);

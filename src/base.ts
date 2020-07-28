@@ -7,6 +7,7 @@ import Auth from './services/auth';
 import AuthApi from './services/auth-api';
 import Api from './services/api';
 import Discography from './services/discography';
+import History from './services/history';
 
 export default abstract class BaseCommand extends Command {
   app: AwilixContainer;
@@ -21,6 +22,7 @@ export default abstract class BaseCommand extends Command {
       authApi: asClass(AuthApi).singleton(),
       auth: asClass(Auth).singleton(),
       discography: asClass(Discography).singleton(),
+      history: asClass(History).singleton(),
     });
   }
 

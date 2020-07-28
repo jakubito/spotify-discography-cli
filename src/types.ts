@@ -12,6 +12,7 @@ export interface AppContainer {
   authApi: AuthApiInterface;
   auth: AuthInterface;
   discography: DiscographyInterface;
+  history: HistoryInterface;
 }
 
 export interface ConfigInterface {
@@ -43,7 +44,12 @@ export interface ApiInterface {
 
 export interface DiscographyInterface {
   create(artistId: string): Promise<Playlist>;
-  update(artistId: string, playlistId: string): Promise<Playlist>;
+  update(artistId: string, playlistId: string, force?: boolean): Promise<Playlist>;
+}
+
+export interface HistoryInterface {
+  load(artistId: string, playlistId: string): string[];
+  save(artistId: string, playlistId: string, trackIds: string[]): void;
 }
 
 /**

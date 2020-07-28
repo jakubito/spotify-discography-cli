@@ -10,8 +10,9 @@ Create and update Spotify discography playlists.
 
 - [Spotify Discography CLI](#spotify-discography-cli)
 - [Installation](#installation)
-- [One-time setup](#one-time-setup)
+- [First-time setup](#first-time-setup)
 - [Usage](#usage)
+- [Track history](#track-history)
 - [Commands](#commands)
 - [Data storage](#data-storage)
 - [Bug reporting](#bug-reporting)
@@ -30,18 +31,18 @@ or
 yarn global add spotify-discography-cli
 ```
 
-# One-time setup
+# First-time setup
 
-In order to use this tool, you have to provide a Spotify app's client ID and secret. To create a new app, follow these steps:
+In order to use this app, you have to provide a Spotify app's client ID and secret. To obtain these, you have to create a new app within Spotify dashboard:
 
-1. Log in to [Spotify Dashboard](https://developer.spotify.com/dashboard/) with your Spotify account.
-2. Click on **Create an app**, provide title and description of your choice (e.g. _Spotify Discography CLI_)
-3. Check both checkboxes and click **Create**
+1. Log in to [Spotify Dashboard](https://developer.spotify.com/dashboard/) with your account.
+2. Click on **Create an app** and provide title and description of your choice (e.g. _Spotify Discography CLI_)
+3. Check both checkboxes and click on **Create**
 4. On the app page, click on **Edit Settings**
 5. Add `http://localhost:10101` to your **Redirect URIs** field and click "Save"
 6. You should see your app's client ID and secret in top left
 
-Once you have client ID and secret ready, run
+Once you have client ID and secret, run
 
 ```
 spotify-discography init
@@ -53,7 +54,7 @@ That's it! You can now start using the app.
 
 # Usage
 
-## Create new discography
+## Create a new discography
 
 To create a new discography playlist for specific artist, you have to get that artist's ID first. There are many ways to get an artist's ID. The easiest one is to go to an artist's page in the web player and check the url - the ID is highlighted in bold: &#8203;https//open.spotify.com/artist/**5oDtp2FC8VqBjTx1aT4P5j**
 
@@ -71,9 +72,9 @@ spotify-discography create 5oDtp2FC8VqBjTx1aT4P5j
 
 This will create a new discography private playlist and display hyperlink in supported terminals.
 
-## Update existing discography
+## Update an existing discography
 
-It is possible to update existing playlists with new releases. In this case, you have to provide **both** artist and playlist IDs. The process of getting a playlist's ID is the same as before (open a playlist in web player and check the url)
+It is possible to update an existing playlist with new releases. In this case, you have to provide **both** artist and playlist IDs. The process of getting a playlist's ID is the same as it is for an artist - open a playlist in web player and check the url.
 
 Once you have both artist and playlist IDs, run
 
@@ -86,6 +87,12 @@ for example
 ```
 spotify-discography update 5oDtp2FC8VqBjTx1aT4P5j 6pyiISrb7yoHw7YDhV7xH8
 ```
+
+# Track history
+
+Each time you create or update a playlist, the information about tracks added is saved on disk. On each update, this data is loaded and checked against. In other words, if you delete a track from a playlist, it won't be added again on next update.
+
+You can override this behaviour using `--force` flag when updating a playlist. This will ignore track history and force add all missing tracks.
 
 # Commands
 
@@ -208,7 +215,8 @@ ARGUMENTS
   PLAYLIST_ID  [required] Spotify playlist ID
 
 OPTIONS
-  -h, --help  show CLI help
+  -f, --force  ignore history and force add all missing tracks
+  -h, --help   show CLI help
 
 EXAMPLE
   $ spotify-discography update 5oDtp2FC8VqBjTx1aT4P5j 6pyiISrb7yoHw7YDhV7xH8
