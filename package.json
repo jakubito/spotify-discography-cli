@@ -1,7 +1,7 @@
 {
   "name": "spotify-discography-cli",
   "description": "Create and update Spotify discography playlists.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Jakub Dobes <dobes.jakub@gmail.com>",
   "bin": {
     "spotify-discography": "./bin/run"
@@ -12,6 +12,7 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
     "awilix": "^4.2.6",
+    "cli-ux": "^5.4.9",
     "fs-extra": "^9.0.1",
     "lodash.orderby": "^4.6.0",
     "lodash.zip": "^4.2.0",
