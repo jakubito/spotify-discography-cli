@@ -148,7 +148,7 @@ EXAMPLES
   clientId:       9d08c83130e2933e6a440541371fb458
 ```
 
-_See code: [src/commands/config.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/config.ts)_
+_See code: [src/commands/config.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.2/src/commands/config.ts)_
 
 ## `spotify-discography create ARTIST_ID`
 
@@ -170,7 +170,7 @@ EXAMPLE
   SHY FX Discography
 ```
 
-_See code: [src/commands/create.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.2/src/commands/create.ts)_
 
 ## `spotify-discography help [COMMAND]`
 
@@ -201,7 +201,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/init.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.2/src/commands/init.ts)_
 
 ## `spotify-discography reset`
 
@@ -215,7 +215,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/reset.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/reset.ts)_
+_See code: [src/commands/reset.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.2/src/commands/reset.ts)_
 
 ## `spotify-discography update ARTIST_ID PLAYLIST_ID`
 
@@ -239,7 +239,7 @@ EXAMPLE
   SHY FX Discography
 ```
 
-_See code: [src/commands/update.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/update.ts)_
+_See code: [src/commands/update.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.2/src/commands/update.ts)_
 
 <!-- commandsstop -->
 
