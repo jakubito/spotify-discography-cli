@@ -1,6 +1,6 @@
 {
   "name": "spotify-discography-cli",
-  "description": "Create and update Spotify discography playlists.",
+  "description": "Create and update Spotify discography playlists",
   "version": "1.0.1",
   "author": "Jakub Dobes <dobes.jakub@gmail.com>",
   "bin": {

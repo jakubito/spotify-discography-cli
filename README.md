@@ -13,6 +13,7 @@ Create and update Spotify discography playlists.
 - [First-time setup](#first-time-setup)
 - [Usage](#usage)
 - [Track history](#track-history)
+- [Automation](#automation)
 - [Commands](#commands)
 - [Data storage](#data-storage)
 - [Bug reporting](#bug-reporting)
@@ -20,6 +21,8 @@ Create and update Spotify discography playlists.
 <!-- tocstop -->
 
 # Installation
+
+## NPM / Yarn
 
 ```
 npm install -g spotify-discography-cli
@@ -30,6 +33,10 @@ or
 ```
 yarn global add spotify-discography-cli
 ```
+
+## Standalone tarballs
+
+You can download standalone tarballs from [Releases](https://github.com/jakubito/spotify-discography-cli/releases) section. These include the node binary so you don't have to have Node / NPM / Yarn installed.
 
 # First-time setup
 
@@ -94,6 +101,14 @@ Each time you create or update a playlist, the information about tracks added is
 
 You can override this behaviour using `--force` flag when updating a playlist. This will ignore track history and force add all missing tracks.
 
+# Automation
+
+To automate playlist updates, the easiest way is to set up a cron job. The following example updates the playlist with new releases once a day:
+
+```
+0 0 * * * /Users/jakubito/Documents/spotify-discography/bin/spotify-discography update 2CIMQHirSU0MQqyYHq0eOx 3igxuZDwGlXocuh9b2T14D
+```
+
 # Commands
 
 <!-- commands -->
@@ -133,7 +148,7 @@ EXAMPLES
   clientId:       9d08c83130e2933e6a440541371fb458
 ```
 
-_See code: [src/commands/config.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/config.ts)_
+_See code: [src/commands/config.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/config.ts)_
 
 ## `spotify-discography create ARTIST_ID`
 
@@ -155,7 +170,7 @@ EXAMPLE
   SHY FX Discography
 ```
 
-_See code: [src/commands/create.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/create.ts)_
+_See code: [src/commands/create.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/create.ts)_
 
 ## `spotify-discography help [COMMAND]`
 
@@ -186,7 +201,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/init.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/init.ts)_
 
 ## `spotify-discography reset`
 
@@ -200,7 +215,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/reset.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/reset.ts)_
+_See code: [src/commands/reset.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/reset.ts)_
 
 ## `spotify-discography update ARTIST_ID PLAYLIST_ID`
 
@@ -224,7 +239,7 @@ EXAMPLE
   SHY FX Discography
 ```
 
-_See code: [src/commands/update.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.0/src/commands/update.ts)_
+_See code: [src/commands/update.ts](https://github.com/jakubito/spotify-discography-cli/blob/v1.0.1/src/commands/update.ts)_
 
 <!-- commandsstop -->
 
