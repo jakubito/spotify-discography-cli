@@ -1,19 +1,19 @@
-import Command from '@oclif/command';
-import { IConfig } from '@oclif/config';
-import { createContainer, asValue, asClass, AwilixContainer, InjectionMode } from 'awilix';
-import { AppContainer } from './types';
-import Config from './services/config';
-import Auth from './services/auth';
-import AuthApi from './services/auth-api';
-import Api from './services/api';
-import Discography from './services/discography';
-import History from './services/history';
+import Command from '@oclif/command'
+import { IConfig } from '@oclif/config'
+import { createContainer, asValue, asClass, AwilixContainer, InjectionMode } from 'awilix'
+import { AppContainer } from './types'
+import Config from './services/config'
+import Auth from './services/auth'
+import AuthApi from './services/auth-api'
+import Api from './services/api'
+import Discography from './services/discography'
+import History from './services/history'
 
 export default abstract class BaseCommand extends Command {
-  app: AwilixContainer;
+  app: AwilixContainer
 
   constructor(argv: string[], config: IConfig) {
-    super(argv, config);
+    super(argv, config)
 
     this.app = createContainer({ injectionMode: InjectionMode.CLASSIC }).register({
       oclifConfig: asValue(config),
@@ -23,10 +23,10 @@ export default abstract class BaseCommand extends Command {
       auth: asClass(Auth).singleton(),
       discography: asClass(Discography).singleton(),
       history: asClass(History).singleton(),
-    });
+    })
   }
 
   resolve<T extends keyof AppContainer>(name: T) {
-    return this.app.resolve<AppContainer[T]>(name);
+    return this.app.resolve<AppContainer[T]>(name)
   }
 }

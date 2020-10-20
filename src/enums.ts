@@ -6,7 +6,7 @@ export const CONFIG_KEYS = [
   'accessToken',
   'refreshToken',
   'tokenExpiration',
-] as const;
+] as const
 
 export enum Scope {
   PLAYLIST_MODIFY_PRIVATE = 'playlist-modify-private',
@@ -25,7 +25,7 @@ export const AlbumGroupPriority = {
   [AlbumGroup.SINGLE]: 1,
   [AlbumGroup.APPEARS_ON]: 2,
   [AlbumGroup.COMPILATION]: 3,
-} as const;
+} as const
 
 export enum ServerResponse {
   AUTH_ERROR = `ERROR!

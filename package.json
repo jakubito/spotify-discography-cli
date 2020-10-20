@@ -32,6 +32,7 @@
     "eslint-config-oclif-typescript": "^0.1",
     "eslint-config-prettier": "^6.11.0",
     "globby": "^10",
+    "prettier": "^2.1.2",
     "ts-node": "^8",
     "typescript": "^3.3"
   },
@@ -66,7 +67,8 @@
     "postpack": "rm -f oclif.manifest.json",
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest",
-    "test": "echo NO TESTS"
+    "test": "echo NO TESTS",
+    "prettify": "prettier --write 'src/**/*.ts'"
   },
   "types": "lib/index.d.ts"
 }
